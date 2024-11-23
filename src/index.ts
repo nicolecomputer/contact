@@ -30,10 +30,10 @@ async function main() {
         cookie: {
             secure: process.env.NODE_ENV === 'production',
             sameSite: 'lax',
-            maxAge: 7200000, // 2 hours
+            maxAge: 7200000,
             path: '/',
             httpOnly: true,
-            domain: process.env.NODE_ENV === 'production' ? 'contact.lion.computer' : undefined
+            // domain: process.env.NODE_ENV === 'production' ? 'contact.lion.computer' : undefined
         },
         saveUninitialized: false,
         rolling: true
@@ -78,16 +78,6 @@ async function main() {
         })
 
         console.log(`Server is running on http://${host}:${port}`)
-
-        server.log.error('Server Config:', {
-            port,
-            host,
-            nodeEnv: process.env.NODE_ENV,
-            hasSessionSecret: !!process.env.SESSION_SECRET,
-            sessionSecretLength: process.env.SESSION_SECRET?.length,
-            hasAdminPassword: !!process.env.ADMIN_PASSWORD,
-            adminPasswordLength: process.env.ADMIN_PASSWORD?.length
-        })
     } catch (err) {
         server.log.error(err)
         process.exit(1)

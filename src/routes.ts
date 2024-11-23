@@ -19,17 +19,7 @@ interface LoginBody {
 
 
 const requireAuth = async (request: FastifyRequest, reply: FastifyReply) => {
-    request.log.error('DEBUG: Auth Check ================')
-    request.log.error({
-        hasSession: !!request.session,
-        authenticated: request.session.authenticated,
-        sessionId: request.session.sessionId,
-        cookies: request.headers.cookie,
-        allHeaders: request.headers
-    })
-
     if (!request.session.authenticated) {
-        request.log.error('DEBUG: please auth ================')
         return reply.redirect('/login')
     }
 }
@@ -65,9 +55,6 @@ export async function formRoutes(server: FastifyInstance) {
             server.log.error('Error storing message:', error)
             return reply.redirect('/error')
         }
-
-        // Redirect back to the form with a success message
-        return reply.redirect('/thanks')
     })
 
     server.get('/thanks', async (request, reply) => {
@@ -92,34 +79,14 @@ export async function formRoutes(server: FastifyInstance) {
     }>('/login', async (request: FastifyRequest<{
         Body: LoginBody
     }>, reply: FastifyReply) => {
-        request.log.error('DEBUG: Login Attempt ================')
-        request.log.error('Request body:', request.body)
-        request.log.error('Headers:', request.headers)
-
         const { password } = request.body
-
-        request.log.error('Password comparison:', {
-            providedPassword: password,
-            passwordLength: password?.length,
-            expectedPassword: process.env.ADMIN_PASSWORD,
-            expectedPasswordLength: process.env.ADMIN_PASSWORD?.length,
-            matches: password === process.env.ADMIN_PASSWORD
-        })
 
         if (password === process.env.ADMIN_PASSWORD) {
             request.session.authenticated = true
 
-            request.log.error('DEBUG: Login Success ================')
-            request.log.error('Session after login:', {
-                hasSession: !!request.session,
-                authenticated: request.session.authenticated,
-                sessionId: request.session.sessionId
-            })
-
             return reply.redirect('/messages')
         }
 
-        request.log.error('DEBUG: Login Failed ================')
         return reply.redirect('/login')
     })
 
@@ -136,13 +103,5 @@ export async function formRoutes(server: FastifyInstance) {
         })
 
         return messages
-    })
-
-    server.get('/session-test', async (request) => {
-        return {
-            sessionExists: !!request.session,
-            authenticated: request.session.authenticated,
-            sessionId: request.session.sessionId
-        }
     })
 }
