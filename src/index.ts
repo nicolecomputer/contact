@@ -1,9 +1,12 @@
+import 'dotenv/config'
+
 import fastify from 'fastify'
 import cors from '@fastify/cors'
 import staticFiles from '@fastify/static'
 import path from 'path'
 import formBody from '@fastify/formbody'
-import 'dotenv/config'
+import session from '@fastify/session'
+import cookie from '@fastify/cookie'
 
 import { isDevelopment } from './config/database'
 import { formRoutes } from "./routes"
@@ -20,6 +23,13 @@ const server = fastify({
 async function main() {
     await server.register(cors)
     await server.register(formBody)
+    await server.register(cookie)
+    await server.register(session, {
+        secret: process.env.SESSION_SECRET || 'change-me-in-production',
+        cookie: {
+            secure: process.env.NODE_ENV === 'production'
+        }
+    })
 
     await server.register(staticFiles, {
         root: path.join(__dirname, '../public'),

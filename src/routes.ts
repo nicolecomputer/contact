@@ -7,6 +7,12 @@ interface ContactForm {
     message: string
 }
 
+const requireAuth = async (request, reply) => {
+    if (!request.session.authenticated) {
+        return reply.redirect('/login')
+    }
+}
+
 export async function formRoutes(server: FastifyInstance) {
     server.get('/', async (request, reply) => {
         return reply.sendFile('index.html')
@@ -50,7 +56,31 @@ export async function formRoutes(server: FastifyInstance) {
         return reply.sendFile('error.html')
     })
 
-    server.get('/messages', async () => {
+
+    server.get('/login', async (request, reply) => {
+        if (request.session.authenticated) {
+            return reply.redirect('/messages')
+        }
+        return reply.sendFile('login.html')
+    })
+
+    server.post('/login', async (request, reply) => {
+        const { password } = request.body
+
+        if (password === process.env.ADMIN_PASSWORD) {
+            request.session.authenticated = true
+            return reply.redirect('/messages')
+        }
+
+        return reply.redirect('/login')
+    })
+
+    server.get('/logout', async (request, reply) => {
+        request.session.destroy()
+        return reply.redirect('/login')
+    })
+
+    server.get('/messages', { preHandler: requireAuth }, async () => {
         const messages = await prisma.message.findMany({
             orderBy: {
                 createdAt: 'desc'

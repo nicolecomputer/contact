@@ -10,6 +10,12 @@
 
 This is for a [dokku](https://dokku.com/) host
 
+Create an app:
+
+```
+dokku apps:create <app-name>
+```
+
 Enable SSL:
 
 ```
@@ -27,15 +33,22 @@ Set production variables:
 
 ```
 dokku config:set <app-name> NODE_ENV="production"
-dokku config:set <app-name> DATABASE_PROVIDER="postgresql"
 ```
+
+```
+dokku config:set <app-name> ADMIN_PASSWORD="your-secret-password"
+```
+
+and get a long secret (here's one way: `openssl rand -base64 40`) and set it
+
+```
+dokku config:set <app-name> SESSION_SECRET="<secret-you-generated>"
 
 Verify everything looks ok for production
 
 ```txt
 config:show contact
 =====> contact env vars
-DATABASE_PROVIDER:     postgresql
 DATABASE_URL:          <your-url>
 DOKKU_APP_RESTORE:     1
 DOKKU_APP_TYPE:        herokuish

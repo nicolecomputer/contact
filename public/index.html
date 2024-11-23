@@ -11,26 +11,29 @@
 
 <body>
     <main class="container">
-        <h1>Contact Nicole</h1>
-        <form action="/contact" method="POST">
-            <fieldset>
-                <label>
-                    Your name
-                    <input name="name" placeholder="Claris Hill" autocomplete="given-name" required />
-                </label>
-                <label>
-                    Email
-                    <input type="email" name="email" placeholder="Email" autocomplete="email" required />
-                </label>
-            </fieldset>
+        <article>
 
-            <label>
-                Message
-                <textarea name="message" aria-label="message" required></textarea>
-            </label>
+            <h1>Contact Nicole</h1>
+            <form action="/contact" method="POST">
+                <fieldset>
+                    <label>
+                        Your name
+                        <input name="name" placeholder="Claris Hill" autocomplete="given-name" required />
+                    </label>
+                    <label>
+                        Email
+                        <input type="email" name="email" placeholder="Email" autocomplete="email" required />
+                    </label>
+                </fieldset>
 
-            <input type="submit" value="Send" />
-        </form>
+                <label>
+                    Message
+                    <textarea name="message" aria-label="message" required></textarea>
+                </label>
+
+                <input type="submit" value="Send" />
+            </form>
+        </article>
     </main>
 </body>
 
