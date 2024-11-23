@@ -12,12 +12,12 @@ import { isDevelopment } from './config/database'
 import { formRoutes } from "./routes"
 
 const server = fastify({
-    logger: isDevelopment ? {
+    logger: {
+        level: 'debug',
         transport: {
             target: 'pino-pretty'
-        },
-        level: 'debug'
-    } : true
+        }
+    }
 })
 
 async function main() {
