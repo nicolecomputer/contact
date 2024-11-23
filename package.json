@@ -1,0 +1,22 @@
+{
+  "name": "contact-me",
+  "version": "1.0.0",
+  "main": "dist/index.js",
+  "author": "Nicole Watts <76132106+nicolecomputer@users.noreply.github.com>",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "dev": "tsx watch src/index.ts"
+  },
+  "dependencies": {
+    "@fastify/cors": "^10.0.1",
+    "@fastify/static": "^8.0.3",
+    "dotenv": "^16.4.5",
+    "fastify": "^5.1.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.9.3",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2"
+  }
+}
