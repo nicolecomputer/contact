@@ -33,7 +33,7 @@ async function main() {
             maxAge: 7200000,
             path: '/',
             httpOnly: true,
-            domain: process.env.NODE_ENV === 'production' ? 'contact.lion.computer' : undefined
+            domain: process.env.NODE_ENV === 'production' ? process.env.DOMAIN : undefined
         },
         saveUninitialized: false,
         rolling: true

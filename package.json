@@ -5,7 +5,8 @@
   "author": "Nicole Watts <76132106+nicolecomputer@users.noreply.github.com>",
   "license": "UNLICENSED",
   "engines": {
-    "node": "22.x"
+    "node": "22.x",
+    "yarn": "1.22.x"
   },
   "scripts": {
     "build": "tsc",

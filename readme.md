@@ -32,6 +32,10 @@ dokku postgres:link <db-name> <app-name>
 Set production variables:
 
 ```
+dokku config:set <app-name> DOMAIN=<your-domain>
+```
+
+```
 dokku config:set <app-name> NODE_ENV="production"
 ```
 
