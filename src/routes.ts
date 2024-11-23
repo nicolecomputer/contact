@@ -1,4 +1,4 @@
-import { FastifyInstance } from 'fastify'
+import { FastifyInstance, FastifyRequest, FastifyReply } from 'fastify'
 import prisma from './lib/prisma'
 
 interface ContactForm {
@@ -7,7 +7,18 @@ interface ContactForm {
     message: string
 }
 
-const requireAuth = async (request, reply) => {
+declare module '@fastify/session' {
+    interface FastifySessionObject {
+        authenticated?: boolean
+    }
+}
+
+interface LoginBody {
+    password: string
+}
+
+
+const requireAuth = async (request: FastifyRequest, reply: FastifyReply) => {
     if (!request.session.authenticated) {
         return reply.redirect('/login')
     }
@@ -57,14 +68,16 @@ export async function formRoutes(server: FastifyInstance) {
     })
 
 
-    server.get('/login', async (request, reply) => {
+    server.get('/login', async (request: FastifyRequest, reply: FastifyReply) => {
         if (request.session.authenticated) {
             return reply.redirect('/messages')
         }
         return reply.sendFile('login.html')
     })
 
-    server.post('/login', async (request, reply) => {
+    server.post<{ Body: LoginBody }>('/login', async (request: FastifyRequest<{
+        Body: LoginBody
+    }>, reply: FastifyReply) => {
         const { password } = request.body
 
         if (password === process.env.ADMIN_PASSWORD) {
