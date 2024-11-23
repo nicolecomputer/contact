@@ -1,2 +1,2 @@
-release: yarn prisma:prod:deploy
+release: db:migrate
 web: yarn start
