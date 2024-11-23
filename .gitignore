@@ -61,3 +61,8 @@ npm-debug.log*
 # Build output
 build/
 out/
+
+# Prisma
+prisma/schema.prisma
+*.db
+*.db-journal

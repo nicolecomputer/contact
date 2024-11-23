@@ -5,10 +5,16 @@ import path from 'path'
 import formBody from '@fastify/formbody'
 import 'dotenv/config'
 
+import { isDevelopment } from './config/database'
 import { formRoutes } from "./routes"
 
 const server = fastify({
-    logger: true
+    logger: isDevelopment ? {
+        transport: {
+            target: 'pino-pretty'
+        },
+        level: 'debug'
+    } : true
 })
 
 async function main() {
