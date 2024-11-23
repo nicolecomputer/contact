@@ -137,4 +137,12 @@ export async function formRoutes(server: FastifyInstance) {
 
         return messages
     })
+
+    server.get('/session-test', async (request) => {
+        return {
+            sessionExists: !!request.session,
+            authenticated: request.session.authenticated,
+            sessionId: request.session.sessionId
+        }
+    })
 }

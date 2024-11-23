@@ -17,7 +17,8 @@ const server = fastify({
             target: 'pino-pretty'
         },
         level: 'debug'
-    } : true
+    } : true,
+    trustProxy: true
 })
 
 async function main() {
