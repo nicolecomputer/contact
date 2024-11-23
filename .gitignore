@@ -63,6 +63,5 @@ build/
 out/
 
 # Prisma
-prisma/schema.prisma
 *.db
 *.db-journal
