@@ -27,8 +27,13 @@ async function main() {
     await server.register(session, {
         secret: process.env.SESSION_SECRET || 'change-me-in-production',
         cookie: {
-            secure: process.env.NODE_ENV === 'production'
-        }
+            secure: process.env.NODE_ENV === 'production',
+            sameSite: 'lax',
+            maxAge: 7200000, // 2 hours
+            path: '/'
+        },
+        saveUninitialized: false,
+        rolling: true
     })
 
     await server.register(staticFiles, {

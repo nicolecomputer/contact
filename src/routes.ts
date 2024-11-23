@@ -19,7 +19,13 @@ interface LoginBody {
 
 
 const requireAuth = async (request: FastifyRequest, reply: FastifyReply) => {
+    request.log.info('Session state in requireAuth:', {
+        authenticated: request.session.authenticated,
+        sessionId: request.session.sessionId
+    })
+
     if (!request.session.authenticated) {
+        request.log.info('Not authenticated, redirecting to login')
         return reply.redirect('/login')
     }
 }
