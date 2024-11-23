@@ -2,6 +2,7 @@ import fastify from 'fastify'
 import cors from '@fastify/cors'
 import staticFiles from '@fastify/static'
 import path from 'path'
+import formBody from '@fastify/formbody'
 import 'dotenv/config'
 
 import { formRoutes } from "./routes"
@@ -11,12 +12,12 @@ const server = fastify({
 })
 
 async function main() {
-    // Register CORS
     await server.register(cors)
+    await server.register(formBody)
 
     await server.register(staticFiles, {
         root: path.join(__dirname, '../public'),
-        prefix: '/public/' // optional: adds /public/ prefix to files
+        prefix: '/public/' // adds /public/ prefix to files
     })
 
 
