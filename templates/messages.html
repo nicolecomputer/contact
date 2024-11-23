@@ -16,7 +16,7 @@
                 <nav>
                     <ul>
                         <li>
-                            <h1>Contact Messages</h1>
+                            <h1>Messages</h1>
                         </li>
                     </ul>
                     <ul>
@@ -31,14 +31,29 @@
                     <% messages.forEach((message)=> { %>
                         <article>
                             <header>
-                                <div style="display: flex; justify-content: space-between; align-items: baseline">
-                                    <strong>From: <%= message.name %> (<a href="mailto:<%= message.email %>">
-                                                <%= message.email %>
-                                            </a>)
-                                    </strong>
+                                <div>
+                                    <strong>From:</strong>
+                                    <small>
+                                        <%= message.name %>
+                                    </small>
+                                </div>
+                                <div>
+                                    <strong>Email:</strong>
+                                    <small>
+                                        <a href="mailto:<%= message.email %>">
+                                            <%= message.email %>
+                                        </a> </small>
+                                </div>
+                                <div>
+                                    <strong>Date:</strong>
                                     <small>
                                         <%= new Date(message.createdAt).toLocaleString() %>
                                     </small>
+                                </div>
+                                <div style="display: flex; justify-content: space-between; align-items: baseline">
+                                    <strong>From: <%= message.name %> ()
+                                    </strong>
+
                                 </div>
                             </header>
                             <p>
