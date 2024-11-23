@@ -30,7 +30,9 @@ async function main() {
             secure: process.env.NODE_ENV === 'production',
             sameSite: 'lax',
             maxAge: 7200000, // 2 hours
-            path: '/'
+            path: '/',
+            httpOnly: true,
+            domain: process.env.NODE_ENV === 'production' ? 'contact.lion.computer' : undefined
         },
         saveUninitialized: false,
         rolling: true
