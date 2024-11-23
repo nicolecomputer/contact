@@ -13,9 +13,19 @@ import { formRoutes } from "./routes"
 
 const server = fastify({
     logger: {
-        level: 'debug',
-        transport: {
-            target: 'pino-pretty'
+        level: 'info',
+        serializers: {
+            req(request) {
+                return {
+                    method: request.method,
+                    url: request.url,
+                    parameters: request.params,
+                    headers: {
+                        host: request.headers.host,
+                        cookie: request.headers.cookie
+                    }
+                }
+            }
         }
     }
 })
