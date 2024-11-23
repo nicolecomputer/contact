@@ -7,6 +7,8 @@ import path from 'path'
 import formBody from '@fastify/formbody'
 import session from '@fastify/session'
 import cookie from '@fastify/cookie'
+import view from '@fastify/view'
+import ejs from 'ejs'
 
 import { isDevelopment } from './config/database'
 import { formRoutes } from "./routes"
@@ -38,6 +40,14 @@ async function main() {
         saveUninitialized: false,
         rolling: true
     })
+
+    await server.register(view, {
+        engine: {
+            ejs: ejs
+        },
+        root: path.join(__dirname, '..', 'templates')
+    })
+
 
     await server.register(staticFiles, {
         root: path.join(__dirname, '../public'),

@@ -95,12 +95,14 @@ export async function formRoutes(server: FastifyInstance) {
         return reply.redirect('/login')
     })
 
-    server.get('/messages', { preHandler: requireAuth }, async () => {
+    server.get('/messages', { preHandler: requireAuth }, async (request, reply) => {
         const messages = await prisma.message.findMany({
             orderBy: {
                 createdAt: 'desc'
             }
         })
+
+        return reply.view('/messages.html', { messages })
 
         return messages
     })

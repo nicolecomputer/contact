@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="light dark">
+    <link rel="stylesheet" href="/public/css/pico.min.css">
+    <title>Messages</title>
+</head>
+
+<body>
+    <main class="container">
+        <article>
+            <header>
+                <nav>
+                    <ul>
+                        <li>
+                            <h1>Contact Messages</h1>
+                        </li>
+                    </ul>
+                    <ul>
+                        <li><a href="/logout" role="button">Logout</a></li>
+                    </ul>
+                </nav>
+            </header>
+
+            <% if (messages.length===0) { %>
+                <p>No messages yet.</p>
+                <% } else { %>
+                    <% messages.forEach((message)=> { %>
+                        <article>
+                            <header>
+                                <div style="display: flex; justify-content: space-between; align-items: baseline">
+                                    <strong>From: <%= message.name %> (<a href="mailto:<%= message.email %>">
+                                                <%= message.email %>
+                                            </a>)
+                                    </strong>
+                                    <small>
+                                        <%= new Date(message.createdAt).toLocaleString() %>
+                                    </small>
+                                </div>
+                            </header>
+                            <p>
+                                <%= message.message %>
+                            </p>
+                        </article>
+                        <% }) %>
+                            <% } %>
+        </article>
+    </main>
+</body>
+
+</html>
