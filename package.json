@@ -3,14 +3,14 @@
   "version": "1.0.0",
   "main": "dist/index.js",
   "author": "Nicole Watts <76132106+nicolecomputer@users.noreply.github.com>",
+  "license": "UNLICENSED",
   "scripts": {
     "build": "tsc",
     "start": "node dist/index.js",
-    "dev": "NODE_ENV=development yarn generate-schema && tsx watch src/index.ts",
-    "generate-schema": "tsx scripts/generate-schema.ts",
-    "db:migrate": "yarn generate-schema && prisma migrate deploy",
-    "db:studio": "yarn generate-schema && prisma studio",
-    "postinstall": "yarn generate-schema"
+    "dev": "NODE_ENV=development node scripts/generate-schema.js && tsx watch src/index.ts",
+    "db:migrate": "node scripts/generate-schema.js && prisma migrate deploy",
+    "db:studio": "node scripts/generate-schema.js && prisma studio",
+    "postinstall": "prisma generate"
   },
   "dependencies": {
     "@fastify/cors": "^10.0.1",

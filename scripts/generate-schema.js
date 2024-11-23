@@ -1,6 +1,7 @@
-import fs from 'fs'
-import path from 'path'
-import { execSync } from 'child_process'
+// scripts/generate-schema.js
+const fs = require('fs')
+const path = require('path')
+const { execSync } = require('child_process')
 
 // Ensure NODE_ENV is set
 const NODE_ENV = process.env.NODE_ENV || 'development'
@@ -14,7 +15,9 @@ const schema = template.replace('{{provider}}', provider)
 
 fs.writeFileSync(outputPath, schema)
 
-// Regenerate Prisma Client
-execSync('prisma generate', { stdio: 'inherit' })
+// In production, don't run prisma generate as it's handled by postinstall
+if (NODE_ENV !== 'production') {
+    execSync('prisma generate', { stdio: 'inherit' })
+}
 
 console.log(`Generated Prisma schema for ${provider} (${NODE_ENV} environment)`)
