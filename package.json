@@ -4,13 +4,16 @@
   "main": "dist/index.js",
   "author": "Nicole Watts <76132106+nicolecomputer@users.noreply.github.com>",
   "license": "UNLICENSED",
+  "engines": {
+    "node": "20.x"
+  },
   "scripts": {
     "build": "tsc",
     "start": "node dist/index.js",
     "dev": "NODE_ENV=development node scripts/generate-schema.js && tsx watch src/index.ts",
     "db:migrate": "node scripts/generate-schema.js && prisma migrate deploy",
     "db:studio": "node scripts/generate-schema.js && prisma studio",
-    "postinstall": "prisma generate"
+    "postinstall": "node scripts/generate-schema.js && prisma generate"
   },
   "dependencies": {
     "@fastify/cors": "^10.0.1",
