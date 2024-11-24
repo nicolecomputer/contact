@@ -1,0 +1,31 @@
+{
+  "name": "Node.js & PostgreSQL Development",
+  "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
+  "forwardPorts": [3000, 5432, 5555],
+  "postCreateCommand": "yarn install && yarn db:migrate",
+  "features": {
+    "ghcr.io/devcontainers/features/node:1": {
+      "version": "22"
+    },
+    "ghcr.io/itsmechlark/features/postgresql:1": {
+      "version": "15",
+      "createDatabase": true
+    }
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "dbaeumer.vscode-eslint",
+        "esbenp.prettier-vscode",
+        "Prisma.prisma",
+        "ms-vscode.vscode-typescript-next"
+      ]
+    }
+  },
+  "remoteEnv": {
+    "DATABASE_URL": "postgresql://postgres:postgres@localhost:5432/postgres",
+    "NODE_ENV": "development",
+    "ADMIN_PASSWORD": "password",
+    "SESSION_SECRET": "this-is-a-session-secret-keeping-us-safe"
+  }
+}
