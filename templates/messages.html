@@ -45,6 +45,11 @@
                                     <strong>Date:</strong>
                                     <%= new Date(message.createdAt).toLocaleString() %>
                                 </div>
+                                <div>
+                                    <strong>Referer:</strong>
+                                    <%= message.referer %>
+                                </div>
+
                             </header>
                             <p>
                                 <%= message.message %>

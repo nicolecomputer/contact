@@ -5,6 +5,7 @@ interface ContactForm {
     name: string
     email: string
     message: string
+    referer?: string
 }
 
 declare module '@fastify/session' {
@@ -31,19 +32,18 @@ export async function formRoutes(server: FastifyInstance) {
     })
 
     server.post<{ Body: ContactForm }>('/contact', async (request, reply) => {
-        const { name, email, message } = request.body
+        const { name, email, message, referer } = request.body
 
-        // Log the form data
         server.log.info('Form submission received:')
         server.log.info({ name, email, message })
 
         try {
-            // Store in database
             const newMessage = await prisma.message.create({
                 data: {
                     name,
                     email,
-                    message
+                    message,
+                    referer: referer || null
                 }
             })
 
@@ -103,7 +103,5 @@ export async function formRoutes(server: FastifyInstance) {
         })
 
         return reply.view('/messages.html', { messages })
-
-        return messages
     })
 }

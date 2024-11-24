@@ -31,10 +31,19 @@
                     <textarea name="message" aria-label="message" required></textarea>
                 </label>
 
+                <input type="hidden" id="referer" name="referer">
+
                 <input type="submit" value="Send" />
             </form>
         </article>
     </main>
 </body>
+
+<script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const referer = urlParams.get('ref') || '';
+
+    document.getElementById('referer').value = referer;
+</script>
 
 </html>
