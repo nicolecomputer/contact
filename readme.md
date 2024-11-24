@@ -2,20 +2,15 @@
 
 This the contact form that I use for folks to get in touch. You can see it live and in the wild at [contact.lion.computer](contact.lion.computer/?ref=github).
 
-![Preview image](https://raw.githubusercontent.com/nicolecomputer/contact/refs/heads/main/readme-images/contact.png)
+<img src="https://raw.githubusercontent.com/nicolecomputer/contact/refs/heads/main/readme-images/contact.png" width="300">
 
+Features:
+- Submit a message
+- The messages are stored in a database
+- There's a password-protected admin view to see all of the message
+- Can optionally store a referer (passed as `ref` in the URL)
+- Can optionally notify on new message via Pushover
 
-## Optional Notifications: Pushover
-
-To use pushover make sure these variables are set:
-
-
-```
-PUSHOVER_USER="<your-user>"
-PUSHOVER_TOKEN="<your-generated-token>"
-```
-
-If these variables are missing the server won't try to notify you.
 
 ## Development (Easy Path)
 
@@ -29,17 +24,31 @@ yarn dev
 
 or use the VSCode build task
 
-## Development (Hard path)
+## Development (Harder path)
 
 You'll need a Postgres database and a user on that database that has permission to create databases.
 
-Next setuo the `.env` by copying the example
+Next setup the `.env` by copying the example
 
 ```
 > cp .env.example .env
 ```
 
-And open that file and fill out the details
+And open that file and fill out the details.
+
+After that you need to install dependencies (`yarn install`) and start the dev environment (`yarn dev`).
+
+## Optional Notifications: Pushover
+
+To use pushover make sure these variables are set:
+
+
+```
+PUSHOVER_USER="<your-user>"
+PUSHOVER_TOKEN="<your-generated-token>"
+```
+
+If these variables are missing the server won't try to notify you.
 
 ## Setting up in production
 
