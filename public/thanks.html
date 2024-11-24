@@ -6,7 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="color-scheme" content="light dark">
     <link rel="stylesheet" href="/public/css/pico.min.css">
-    <title>Contact Nicole</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;600&family=Source+Sans+Pro:wght@400;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="/public/css/shared.css">
+    <title>Thank You</title>
     <style>
         .thank-you-container {
             text-align: center;
@@ -22,16 +26,12 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            background: var(--pico-primary);
+            background: var(--secondary);
             margin: 0 auto 2rem auto;
             animation: scale-up 0.5s ease-out;
-            color: white;
+            color: var(--light);
+            font-size: 1.5rem;
             font-weight: bold;
-        }
-
-        .message {
-            margin: 1.5rem 0;
-            font-size: 1.2rem;
         }
 
         @keyframes scale-up {
@@ -44,25 +44,59 @@
             }
         }
 
+        h1 {
+            font-family: var(--headerFont);
+            color: var(--dark);
+            font-size: 1.75rem;
+            margin: 2.25rem 0 1rem 0;
+            font-weight: 600;
+        }
+
+        .message {
+            margin: 1.5rem 0;
+            font-size: 1.2rem;
+            color: var(--darkgray);
+            font-family: var(--bodyFont);
+        }
+
         .home-link {
             display: inline-block;
             margin-top: 2rem;
             text-decoration: none;
-            transition: opacity 0.2s;
+            color: var(--secondary);
+            font-weight: 600;
+            font-family: var(--bodyFont);
+            transition: all 0.2s;
+            background-color: var(--highlight);
+            border-radius: 5px;
+            padding: 0.2rem 0.4rem;
         }
 
         .home-link:hover {
-            opacity: 0.8;
-            text-decoration: underline;
+            color: var(--dark);
+            text-decoration: none;
         }
 
-        h1 {
-            margin-bottom: 1rem;
+        /* Optional: Add a subtle animation to the entire container */
+        .thank-you-container {
+            animation: fade-in 0.5s ease-out;
+        }
+
+        @keyframes fade-in {
+            0% {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         /* Ensure the checkmark is visible */
         .checkmark {
-            stroke: white;
+            stroke: var(--light);
             stroke-width: 3;
             width: 30px;
             height: 30px;
@@ -78,7 +112,7 @@
             </div>
             <h1>Thank You!</h1>
             <p class="message">Your message has been successfully sent.</p>
-            <a href="https://nicole.computer" class="home-link">← Return to homepage</a>
+            <a href="https://nicole.computer" class="home-link">Return to homepage</a>
         </div>
     </main>
 </body>

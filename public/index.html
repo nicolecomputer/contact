@@ -4,32 +4,95 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="color-scheme" content="light dark">
+    <meta name="color-scheme" content="light">
     <link rel="stylesheet" href="/public/css/pico.min.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;600&family=Source+Sans+Pro:wght@400;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="/public/css/shared.css">
+
     <title>Contact Nicole</title>
+    <style>
+        h1 {
+            font-family: var(--headerFont);
+            color: var(--dark);
+            font-size: 1.75rem;
+            margin: 2.25rem 0 1rem 0;
+            font-weight: 600;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        label {
+            color: var(--darkgray);
+            font-family: var(--bodyFont);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        input,
+        textarea {
+            background-color: var(white);
+            border: 1px solid var(--lightgray);
+            border-radius: 5px;
+            padding: 0.5rem;
+            font-family: var(--bodyFont);
+            color: var(--darkgray);
+            margin-bottom: 1rem;
+            transition: border-color 0.2s;
+        }
+
+        input:focus,
+        textarea:focus {
+            border-color: var(--secondary);
+            outline: none;
+        }
+
+        textarea {
+            min-height: 150px;
+        }
+
+        input[type="submit"] {
+            background-color: var(--secondary);
+            color: var(--light);
+            font-weight: 600;
+            padding: 0.5rem 2rem;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        input[type="submit"]:hover {
+            background-color: var(--dark);
+        }
+
+        fieldset {
+            border: none;
+            padding: 0;
+            margin: 0;
+        }
+    </style>
 </head>
 
 <body>
     <main class="container">
         <article>
-
             <h1>Contact Nicole</h1>
             <form action="/contact" method="POST">
                 <fieldset>
-                    <label>
-                        Your name
-                        <input name="name" placeholder="Claris Hill" autocomplete="given-name" required />
-                    </label>
-                    <label>
-                        Email
-                        <input type="email" name="email" placeholder="Email" autocomplete="email" required />
-                    </label>
+                    <label for="name">Your name</label>
+                    <input id="name" name="name" placeholder="Claris Hill" autocomplete="given-name" required />
+
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" placeholder="Email" autocomplete="email" required />
                 </fieldset>
 
-                <label>
-                    Message
-                    <textarea name="message" aria-label="message" required></textarea>
-                </label>
+                <label for="message">Message</label>
+                <textarea id="message" name="message" required></textarea>
 
                 <input type="hidden" id="referer" name="referer">
 
@@ -37,13 +100,12 @@
             </form>
         </article>
     </main>
+
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const referer = urlParams.get('ref') || '';
+        document.getElementById('referer').value = referer;
+    </script>
 </body>
-
-<script>
-    const urlParams = new URLSearchParams(window.location.search);
-    const referer = urlParams.get('ref') || '';
-
-    document.getElementById('referer').value = referer;
-</script>
 
 </html>
