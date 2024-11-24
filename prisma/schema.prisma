@@ -14,7 +14,7 @@ model Message {
   email     String
   message   String
   createdAt DateTime @default(now())
-  read      Boolean  @default(false)
+  referer   String?
 
   @@index([email])
   @@index([createdAt])
