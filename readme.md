@@ -1,6 +1,6 @@
 # Contact me
 
-This the contact form that I use for folks to get in touch. You can see it live and in the wild at [contact.lion.computer](contact.lion.computer/?ref=github).
+This the contact form that I use for folks to get in touch. You can see it live and in the wild at [contact.lion.computer](https://contact.lion.computer/?ref=github).
 
 <img src="https://raw.githubusercontent.com/nicolecomputer/contact/refs/heads/main/readme-images/contact.png" width="300">
 
