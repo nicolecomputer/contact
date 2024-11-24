@@ -1,5 +1,8 @@
 # Contact me
 
+This the contact form that I use for folks to get in touch. You can see it live and in the wild at [contact.lion.computer](contact.lion.computer/?ref=github).
+
+
 ## Optional Notifications: Pushover
 
 To use pushover make sure these variables are set:
@@ -91,8 +94,3 @@ DOKKU_PROXY_SSL_PORT:  443
 GIT_REV:               32d35270164d2e1b2d79f3d5e3afd0308855542d
 NODE_ENV:              production
 ````
-
-## TODO
-
-- Refers
-- Notification when a new message arrives
