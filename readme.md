@@ -2,6 +2,8 @@
 
 This the contact form that I use for folks to get in touch. You can see it live and in the wild at [contact.lion.computer](contact.lion.computer/?ref=github).
 
+![Preview image](https://raw.githubusercontent.com/nicolecomputer/contact/refs/heads/main/readme-images/contact.png)
+
 
 ## Optional Notifications: Pushover
 
