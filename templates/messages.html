@@ -33,27 +33,17 @@
                             <header>
                                 <div>
                                     <strong>From:</strong>
-                                    <small>
-                                        <%= message.name %>
-                                    </small>
+                                    <%= message.name %>
                                 </div>
                                 <div>
                                     <strong>Email:</strong>
-                                    <small>
-                                        <a href="mailto:<%= message.email %>">
-                                            <%= message.email %>
-                                        </a> </small>
+                                    <a href="mailto:<%= message.email %>">
+                                        <%= message.email %>
+                                    </a>
                                 </div>
                                 <div>
                                     <strong>Date:</strong>
-                                    <small>
-                                        <%= new Date(message.createdAt).toLocaleString() %>
-                                    </small>
-                                </div>
-                                <div style="display: flex; justify-content: space-between; align-items: baseline">
-                                    <strong>From: <%= message.name %> ()
-                                    </strong>
-
+                                    <%= new Date(message.createdAt).toLocaleString() %>
                                 </div>
                             </header>
                             <p>
