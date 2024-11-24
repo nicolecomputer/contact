@@ -1,5 +1,17 @@
 # Contact me
 
+## Optional Notifications: Pushover
+
+To use pushover make sure these variables are set:
+
+
+```
+PUSHOVER_USER="<your-user>"
+PUSHOVER_TOKEN="<your-generated-token>"
+```
+
+If these variables are missing the server won't try to notify you.
+
 ## Development (Easy Path)
 
 The fastest way to do development is to use the [devcontainer](https://containers.dev/). VSCode will automatically prompt you for this and this also enables [codespaces](https://github.com/features/codespaces).

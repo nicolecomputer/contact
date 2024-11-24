@@ -1,6 +1,6 @@
 import { FastifyInstance, FastifyRequest, FastifyReply } from 'fastify'
 import prisma from './lib/prisma'
-
+import { sendPushoverNotification } from './lib/pushover'
 interface ContactForm {
     name: string
     email: string
@@ -47,8 +47,7 @@ export async function formRoutes(server: FastifyInstance) {
                 }
             })
 
-            // Log success
-            server.log.info('Message stored in database', newMessage)
+            sendPushoverNotification(newMessage)
 
             return reply.redirect('/thanks')
         } catch (error) {

@@ -15,9 +15,6 @@ import { formRoutes } from "./routes"
 
 const server = fastify({
     logger: isDevelopment ? {
-        transport: {
-            target: 'pino-pretty'
-        },
         level: 'debug'
     } : true,
     trustProxy: true
